@@ -125,15 +125,3 @@ button#submitBtn:hover {
   color: #ff3c5f;
   margin-top: 10px;
 }
-
-.welcome {
-  color: white;
-  font-weight: 800;
-}
-
-.amount {
-  color: cyan;
-}
-.surprise {
-  display: none !important;
-}
