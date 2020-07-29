@@ -1,3 +1,12 @@
+// global variable
+const matched = document.getElementById("matched");
+const notMatched = document.getElementById("notMatched");
+let inputPin = document.getElementById("inputedNumber");
+let generatePin = document.getElementById("generatedPin");
+let submitingBtn = document.getElementById("submitBtn");
+let pinGeneratingBtn = document.getElementById("pinGenerateBtn");
+let givenTry = document.getElementById("tryLeft");
+
 // pin generated button code
 
 document
@@ -8,23 +17,20 @@ document
     let randomNumber = Math.floor(
       Math.random() * (maxNumber - minNumber) + minNumber
     );
-
-    document.getElementById("notMatched").style.display = "none";
-    document.getElementById("matched").style.display = "none";
-    clearInput("inputedNumber");
-    document.getElementById("generatedPin").value = randomNumber;
+    generatePin.value = randomNumber;
+    matched.style.display = "none";
+    notMatched.style.display = "none";
+    clearInput(inputPin);
   });
 
 //   input clear function
 
 function clearInput(id) {
-  document.getElementById(id).value = "";
+  id.value = "";
 }
 
 // message enable desable function
 
-const matched = document.getElementById("matched");
-const notMatched = document.getElementById("notMatched");
 function outputMessage(isMatched) {
   if (isMatched == true) {
     matched.style.display = "block";
@@ -38,58 +44,46 @@ function outputMessage(isMatched) {
 // disabled input & button function
 
 function disabled(id) {
-  document.getElementById(id).disabled = true;
-  document.getElementById(id).style.backgroundColor = "#425062";
+  id.disabled = true;
+  id.style.backgroundColor = "#425062";
 }
 
 // How many try left function
 function tryLeft() {
-  let givenTry = document.getElementById("tryLeft").innerText;
-  let tryNumber = parseInt(givenTry);
-  document.getElementById("tryLeft").innerText = tryNumber - 1;
+  let tryNumber = parseInt(givenTry.innerText);
+  givenTry.innerText = tryNumber - 1;
 
-  if (document.getElementById("tryLeft").innerText == 0) {
-    disabled("submitBtn");
-    disabled("inputedNumber");
-    disabled("generatedPin");
-    disabled("pinGenerateBtn");
+  if (givenTry.innerText == 0) {
+    disabled(inputPin);
+    disabled(generatePin);
+    disabled(submitingBtn);
+    disabled(pinGeneratingBtn);
   }
 }
 
-//Inputed number showing value
+//Input number showing value
 
-function inputNumberShow(id) {
-  document.getElementById(id).addEventListener("click", function (event) {
-    let number = document.getElementById(id).innerText;
-    let existingNumber = document.getElementById("inputedNumber").value;
-    if (existingNumber.length <= 3) {
-      document.getElementById("inputedNumber").value = existingNumber + number;
-    } else {
-      alert("You Cannot Enter More Than 4 Pin Number");
-    }
-    if (document.getElementById("inputedNumber").disabled == true) {
-      document.getElementById("inputedNumber").value = "";
-    }
+const numberBtn = document.querySelectorAll(".button");
+numberBtn.forEach(number => {
+  number.addEventListener("click", () => {
+    inputNumberShow(number);
   });
+});
+function inputNumberShow(number) {
+  if (inputPin.value.length <= 3) {
+    inputPin.value = inputPin.value + number.innerText;
+  } else {
+    alert("You Cannot Enter More Than 4 Pin Number");
+  }
+  if (inputPin.disabled == true) {
+    inputPin.value = "";
+  }
 }
-//
-inputNumberShow("zero");
-inputNumberShow("one");
-inputNumberShow("two");
-inputNumberShow("three");
-inputNumberShow("four");
-inputNumberShow("five");
-inputNumberShow("six");
-inputNumberShow("seven");
-inputNumberShow("eight");
-inputNumberShow("nine");
 
 // submit button code
 
 document.getElementById("submitBtn").addEventListener("click", function () {
-  let inputPin = document.getElementById("inputedNumber").value;
-  let generatePin = document.getElementById("generatedPin").value;
-  if (inputPin === generatePin) {
+  if (inputPin.value === generatePin.value) {
     outputMessage(true);
     document.getElementById("tryLeft").innerText = 3;
   } else {
@@ -97,14 +91,14 @@ document.getElementById("submitBtn").addEventListener("click", function () {
     tryLeft();
   }
 
-  clearInput("inputedNumber");
-  clearInput("generatedPin");
+  clearInput(inputPin);
+  clearInput(generatePin);
 });
 
 // cancel button code
 
 document.getElementById("cancel").addEventListener("click", function () {
-  document.getElementById("inputedNumber").value = "";
+  inputPin.value = "";
 });
 
 // remove last number code
@@ -112,11 +106,7 @@ document.getElementById("cancel").addEventListener("click", function () {
 document
   .getElementById("removeLastNumber")
   .addEventListener("click", function () {
-    let inputNumbers = document.getElementById("inputedNumber").value;
-    document.getElementById("inputedNumber").value = inputNumbers.substring(
-      0,
-      inputNumbers.length - 1
-    );
+    inputPin.value = inputPin.value.substring(0, inputPin.value.length - 1);
   });
 
 // finished

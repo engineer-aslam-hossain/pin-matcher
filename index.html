@@ -12,13 +12,13 @@
         <div id="pinGenerateView" class="row ">
             <div class="col-md-6">
                 <div  class="pin-generator half-width">
-                    <input id="generatedPin" class="form-control text-center" type="text">
+                    <input id="generatedPin" class="form-control text-center" type="text" onkeypress="return false;">
                     <button id="pinGenerateBtn" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">  
                 <div class="input-section half-width">
-                    <input id="inputedNumber" class="form-control  text-center" type="text">
+                    <input id="inputedNumber" class="form-control  text-center" type="text" onkeypress="return false;">
                     <div class="numbers">
                         <div class="calc-body">
                             <div  class="calc-button-row">
@@ -37,9 +37,9 @@
                               <div id="three" class="button">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div id="removeLastNumber" class="button"><</div>
+                                <div id="removeLastNumber" class="removeButton"><</div>
                                 <div id="zero" class="button">0</div>
-                                <div id="cancel" class="button">C</div>
+                                <div id="cancel" class="cancelButton">C</div>
                             </div>
                             <div>
                                 <button id="submitBtn"type="submit" class="submit-btn">Submit</button>
