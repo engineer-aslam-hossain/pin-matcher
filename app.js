@@ -20,12 +20,12 @@ document
     generatePin.value = randomNumber;
     matched.style.display = "none";
     notMatched.style.display = "none";
-    clearInput(inputPin);
+    clearInputBox(inputPin);
   });
 
 //   input clear function
 
-function clearInput(id) {
+function clearInputBox(id) {
   id.value = "";
 }
 
@@ -61,7 +61,7 @@ function tryLeft() {
   }
 }
 
-//Input number showing value
+//Input number showing function and code
 
 const numberBtn = document.querySelectorAll(".button");
 numberBtn.forEach(number => {
@@ -91,8 +91,8 @@ document.getElementById("submitBtn").addEventListener("click", function () {
     tryLeft();
   }
 
-  clearInput(inputPin);
-  clearInput(generatePin);
+  clearInputBox(inputPin);
+  clearInputBox(generatePin);
 });
 
 // cancel button code
